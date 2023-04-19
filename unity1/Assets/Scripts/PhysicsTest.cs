@@ -23,6 +23,8 @@ public class PhysicsTest : MonoBehaviour
         
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         Debug.Log("Triggerd: " + collision.gameObject.name);

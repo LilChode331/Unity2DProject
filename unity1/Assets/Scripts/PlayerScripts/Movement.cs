@@ -7,6 +7,10 @@ public class Movement : MonoBehaviour
 
     [SerializeField]float jumpForce = 1;
     [SerializeField]float speed = 1;
+    Animator daveAnim;
+    public SpriteRenderer daveSprite;
+
+    
 
     bool isJumping;
 
@@ -20,7 +24,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        daveAnim = GetComponentInChildren<Animator>();
+        daveSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,6 +33,9 @@ public class Movement : MonoBehaviour
     {   
         {
             float h = Input.GetAxis("Horizontal");
+
+            daveAnim.SetFloat("Speed", Mathf.Abs(h));
+            daveSprite.flipX = h < 0;
             // transform.Translate(Vector3.right * h * Time.deltaTime *  speed );
 
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -49,15 +57,20 @@ public class Movement : MonoBehaviour
         
     }
 
+    // If Jumping set to false
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
         }
+        
 
     }
 
+
+
+    // Coin deleted if collided
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.gameObject.CompareTag("Coins"))

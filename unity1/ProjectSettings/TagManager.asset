@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Coins
   - ScoreManager
+  - Projectile
+  - Undefined
+  - DeathBox
   layers:
   - Default
   - TransparentFX
